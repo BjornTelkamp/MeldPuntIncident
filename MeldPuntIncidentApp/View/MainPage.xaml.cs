@@ -1,6 +1,6 @@
 ﻿using MeldPuntIncidentApp.ViewModel;
 
-namespace MeldPuntIncidentApp;
+namespace MeldPuntIncidentApp.View;
 
 public partial class MainPage : ContentPage
 {

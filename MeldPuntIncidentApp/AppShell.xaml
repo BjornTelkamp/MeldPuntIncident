@@ -3,12 +3,26 @@
     x:Class="MeldPuntIncidentApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MeldPuntIncidentApp"
+    xmlns:view="clr-namespace:MeldPuntIncidentApp.View"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+   
+    <TabBar x:Name="Tabbar">
+        <Tab
+            Icon="triangle_exclamation.svg"
+            Title="Incidents">
+            <ShellContent
+                ContentTemplate="{DataTemplate view:MainPage}"
+                Route="MainPage" /> 
+        </Tab>
+
+        <Tab
+            Icon="map.svg"
+            Title="Map">
+            <ShellContent
+                ContentTemplate="{DataTemplate view:MapPage}"
+                Route="MapPage" />     
+        </Tab>
+    </TabBar>
 
 </Shell>

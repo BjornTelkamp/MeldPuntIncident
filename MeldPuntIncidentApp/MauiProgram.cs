@@ -1,4 +1,5 @@
 ﻿using MeldPuntIncidentApp.Services;
+using MeldPuntIncidentApp.View;
 using MeldPuntIncidentApp.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -27,10 +28,12 @@ public static class MauiProgram
 
         //VIEWMODELS
         builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<MapViewModel>();
 
 
 		//PAGES
         builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<MapPage>();
 		
 
         return builder.Build();
