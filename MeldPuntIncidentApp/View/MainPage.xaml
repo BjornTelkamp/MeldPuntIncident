@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeldPuntIncidentApp.MainPage"
+             xmlns:model="clr-namespace:MeldPuntIncidentApp.Model"
+             xmlns:viewmodel="clr-namespace:MeldPuntIncidentApp.ViewModel"
+             x:DataType="viewmodel:MainViewModel"
+             Title="{Binding Title}">
+
+    <Grid
+        ColumnDefinitions="*"
+        ColumnSpacing="5"
+        RowDefinitions="Auto,Auto"
+        RowSpacing="0">
+        <CollectionView 
+            ItemsSource="{Binding Incidents}"
+            SelectionMode="None"
+            EmptyView="No Incidents">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Incident">
+                    <Grid Padding="10">
+                        <Frame>
+                            <Grid Padding="0" ColumnDefinitions="*">
+                                <VerticalStackLayout
+                                        Grid.Column="0"
+                                        >
+                                    <Label Text="{Binding Description}" Margin="0,0,0,15"/>
+                                    <HorizontalStackLayout
+                                    Grid.Column="1"
+                                    >
+                                        <Label VerticalOptions="Center">
+                                            <Label.Text >
+                                                <MultiBinding StringFormat="{}{0} | {1}">
+                                                    <Binding Path="Category" />
+                                                    <Binding Path="Date"/>
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button 
+            Grid.Row="1" 
+            Text="Create incident" 
+            x:Name="CreateIncident"
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="End"
+            Clicked="CreateIncident_Clicked"/>
+
+    </Grid>
+
+</ContentPage>
