@@ -4,6 +4,8 @@ namespace MeldPuntIncidentApp.View;
 
 public partial class MainPage : ContentPage
 {
+    public IncidentViewModel incidentViewModel;
+    
     public MainPage(MainViewModel mainViewModel)
 	{
 		InitializeComponent();
@@ -12,7 +14,22 @@ public partial class MainPage : ContentPage
 
     private void CreateIncident_Clicked(object sender, EventArgs e)
     {
-       //add functionality.
+        //Navigate to the incidentPage.
+        // use the IncidentViewModel
+
+        var incidentPage = new IncidentPage(incidentViewModel);
+        Navigation.PushAsync(incidentPage);
+        
+        
+
+
+
     }
+
+    private void OnEditTapped(object sender, TappedEventArgs e)
+    {
+
+    }
+
 }
 

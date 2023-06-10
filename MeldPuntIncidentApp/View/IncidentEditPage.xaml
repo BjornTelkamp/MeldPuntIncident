@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Shell.TabBarIsVisible="false"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeldPuntIncidentApp.View.IncidentEditPage"
+             xmlns:model="clr-namespace:MeldPuntIncidentApp.Model"
+             xmlns:viewmodel="clr-namespace:MeldPuntIncidentApp.ViewModel"
+             x:DataType="viewmodel:IncidentEditViewModel"
+             Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollView>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Description:" Grid.Row="0" Grid.Column="0" Margin="15"/>
+                <Entry Text="{Binding Incident.Description}" Grid.Row="0" Grid.Column="1" />
+
+                <Label Text="Category:" Grid.Row="1" Grid.Column="0" Margin="15" />
+                <Picker SelectedItem="{Binding Incident.Category}" Grid.Row="1" Grid.Column="1" >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Severe</x:String>
+                            <x:String>Moderate</x:String>
+                            <x:String>Mild</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Date:" Grid.Row="2" Grid.Column="0" Margin="15"/>
+                <DatePicker Date="{Binding Incident.Date}" Grid.Row="2" Grid.Column="1" />
+
+            </Grid>
+
+        </ScrollView>
+
+        <Button Text="Save" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IncidentEditViewModel}}, Path=SubmitCommand}" Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="15" CommandParameter="{Binding .}"/>
+    </Grid>
+</ContentPage>

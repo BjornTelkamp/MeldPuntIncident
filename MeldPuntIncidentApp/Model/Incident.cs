@@ -14,8 +14,10 @@ public class Incident
     public required DateTime Date { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
+    public Location Location { get; set; }
 #nullable enable
     public string? ImageUrl { get; set; }
 
-    
 }
+
+

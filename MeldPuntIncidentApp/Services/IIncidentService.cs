@@ -10,5 +10,7 @@ namespace MeldPuntIncidentApp.Services;
 public interface IIncidentService
 {
      Task<List<IncidentItemDto>> GetIncidents();
-     Task<IncidentItemDto> CreateIncident();
+     Task<IncidentItemDto> CreateIncident(IncidentItemDto incident);
+
+     Task DeleteIncident(IncidentItemDto incident);
 }

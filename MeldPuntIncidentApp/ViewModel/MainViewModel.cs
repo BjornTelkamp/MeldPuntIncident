@@ -1,34 +1,22 @@
 ﻿using MeldPuntIncidentApp.Services;
-using MeldPuntIncidentApp.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shared.Dtos;
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
+using MeldPuntIncidentApp.View;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace MeldPuntIncidentApp.ViewModel;
 
-public class MainViewModel : BaseViewModel
+public partial class MainViewModel : BaseViewModel
 {
-    private readonly IIncidentService _incidentService;
+    readonly IIncidentService _incidentService;
 
-    private ObservableCollection<IncidentItemDto> _incidents = new();
+    [ObservableProperty]
+    bool isRefreshing;
 
-    public ObservableCollection<IncidentItemDto> Incidents
-    {
-        get => _incidents;
-        set
-        {
-            _incidents = value;
-            OnPropertyChanged(nameof(Incidents));
-        }
-    }
-
-/*    public List<IncidentItemDto> Incidents { get; set; } = new(); 
-*/
     public MainViewModel(IIncidentService incidentService)
     {
         Title = "Incident list";
@@ -36,6 +24,37 @@ public class MainViewModel : BaseViewModel
         _ = GetIncidents();
     }
 
+    [RelayCommand]
+    async Task EditIncident(IncidentItemDto obj)
+    {
+        await Shell.Current.GoToAsync(nameof(IncidentEditPage));
+    }
+
+    [RelayCommand]
+    async Task DeleteIncident(IncidentItemDto obj)
+    { 
+        if (IsBusy)
+        {
+            return;
+        }
+
+        try
+        {
+            await _incidentService.DeleteIncident(obj);
+            Incidents.Remove(obj);
+
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+        }
+        finally
+        {
+            IsBusy = false;
+        }   
+    }
+
+    [RelayCommand]
     async Task GetIncidents()
     {
         if (IsBusy)
@@ -46,8 +65,14 @@ public class MainViewModel : BaseViewModel
         try
         {
             IsBusy = true;
+            IsRefreshing = true;
 
             var results = await _incidentService.GetIncidents();
+
+            if(Incidents.Count > 0)
+            {
+                Incidents.Clear();
+            }
 
             results.ForEach(incident => Incidents.Add(incident));
 
@@ -60,6 +85,21 @@ public class MainViewModel : BaseViewModel
         finally
         {
             IsBusy = false;
+            IsRefreshing = false;
         }
+    }
+
+    [RelayCommand]
+    async Task Tap()
+    {
+        await Shell.Current.GoToAsync(nameof(IncidentPage));
+    }
+
+    [RelayCommand]
+    async Task DetailPage(IncidentItemDto incident)
+    {
+        string incidentJson = JsonConvert.SerializeObject(incident);
+        string incidentEncoded = WebUtility.UrlEncode(incidentJson);
+        await Shell.Current.GoToAsync($"{nameof(IncidentDetailPage)}?Incident={incidentEncoded}");
     }
 }
