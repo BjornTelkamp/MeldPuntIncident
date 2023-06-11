@@ -26,6 +26,7 @@ public partial class IncidentDetailViewModel : BaseViewModel, IQueryAttributable
             string incidentJson = WebUtility.UrlDecode(incidentEncoded);
             Incident = JsonConvert.DeserializeObject<Incident>(incidentJson);
             OnPropertyChanged(nameof(Incident));
+
         }
         else
         {

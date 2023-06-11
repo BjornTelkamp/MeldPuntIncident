@@ -5,10 +5,14 @@
              xmlns:model="clr-namespace:MeldPuntIncidentApp.Model"
              xmlns:viewmodel="clr-namespace:MeldPuntIncidentApp.ViewModel"
              x:DataType="viewmodel:IncidentDetailViewModel"
-               xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
              Shell.TabBarIsVisible="False"
+             xmlns:local="clr-namespace:MeldPuntIncidentApp.Converter"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <local:Base64ImageConverter x:Key="Base64ImageConverter" />
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -29,17 +33,23 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.ColumnSpan="2" Source="dotnet_bot.svg" WidthRequest="250" HeightRequest="250" />
+                <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{Binding Incident.ImageUrl, Converter={StaticResource Base64ImageConverter}}" WidthRequest="250" HeightRequest="250" />
                 <Label Grid.Row="1" Grid.Column="1" Text="{Binding Incident.Description}" FontSize="Medium" Margin="0,10,0,10" />
 
-                <Image Grid.Row="2" Grid.Column="0" Source="category.png" WidthRequest="20" HeightRequest="20" />
+                <Image Grid.Row="2" Grid.Column="0" WidthRequest="20" HeightRequest="20" />
                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding Incident.Category}" FontSize="Small" Margin="0,0,0,10" />
 
-                <Image Grid.Row="3" Grid.Column="0" Source="date.png" WidthRequest="20" HeightRequest="20" />
+                <Image Grid.Row="3" Grid.Column="0" WidthRequest="20" HeightRequest="20" />
                 <Label Grid.Row="3" Grid.Column="1" Text="{Binding Incident.Date}" FontSize="Small" Margin="0,0,0,20" />
 
-                <maps:Map Grid.Row="4" Grid.ColumnSpan="2" x:Name="detailMap" IsShowingUser="True" HeightRequest="200" >
-
+                <maps:Map Grid.Row="4" Grid.ColumnSpan="2" x:Name="detailMap" IsShowingUser="True" HeightRequest="200" ItemsSource="{Binding Incident}">
+                    <maps:Map.ItemTemplate>
+                        <DataTemplate x:DataType="model:Incident">
+                            <maps:Pin Label="{Binding Description}"
+                          Type="Place"
+                          Location="{Binding Location}"/>
+                        </DataTemplate>
+                    </maps:Map.ItemTemplate>
                 </maps:Map>
 
             </Grid>

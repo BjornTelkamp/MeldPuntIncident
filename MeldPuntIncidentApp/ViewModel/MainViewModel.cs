@@ -25,9 +25,11 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task EditIncident(IncidentItemDto obj)
+    async Task EditIncident(IncidentItemDto incident)
     {
-        await Shell.Current.GoToAsync(nameof(IncidentEditPage));
+        string incidentJson = JsonConvert.SerializeObject(incident);
+        string incidentEncoded = WebUtility.UrlEncode(incidentJson);
+        await Shell.Current.GoToAsync($"{nameof(IncidentEditPage)}?Incident={incidentEncoded}");
     }
 
     [RelayCommand]
@@ -55,7 +57,7 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GetIncidents()
+    public async Task GetIncidents()
     {
         if (IsBusy)
         {

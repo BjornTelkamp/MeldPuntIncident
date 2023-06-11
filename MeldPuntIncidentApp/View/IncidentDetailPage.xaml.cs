@@ -10,10 +10,4 @@ public partial class IncidentDetailPage : ContentPage
 		InitializeComponent();
 		BindingContext = incidentDetailViewModel;
 	}
-
-    private void OnMoveToRegionRequested(object sender, MapSpan region)
-    {
-        // Set map location
-        detailMap.MoveToRegion(region);
-    }
 }

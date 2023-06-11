@@ -42,7 +42,7 @@ public class IncidentService : IIncidentService
         var respone = await httpClient.PostAsJsonAsync("https://10.0.2.2:7108/api/incidents", incident);
         respone.EnsureSuccessStatusCode();
         var createIncident = await respone.Content.ReadFromJsonAsync<IncidentItemDto>();
-        
+
         return createIncident;
     }
 
@@ -50,5 +50,12 @@ public class IncidentService : IIncidentService
     {
         var response = await httpClient.DeleteAsync($"https://10.0.2.2:7108/api/incidents/{incident.Id}");
         response.EnsureSuccessStatusCode();
+    }
+
+    public async Task<IncidentItemDto> UpdateIncident(IncidentItemDto incident)
+    {
+        var response = await httpClient.PutAsJsonAsync($"https://10.0.2.2:7108/api/incidents/{incident.Id}", incident);
+        response.EnsureSuccessStatusCode();
+        return response.Content.ReadFromJsonAsync<IncidentItemDto>().Result;
     }
 }

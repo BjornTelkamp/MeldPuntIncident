@@ -12,22 +12,11 @@ public partial class MainPage : ContentPage
         BindingContext = mainViewModel;
     }
 
-    private void CreateIncident_Clicked(object sender, EventArgs e)
+    protected override void OnAppearing()
     {
-        //Navigate to the incidentPage.
-        // use the IncidentViewModel
-
-        var incidentPage = new IncidentPage(incidentViewModel);
-        Navigation.PushAsync(incidentPage);
-        
-        
-
-
-
-    }
-
-    private void OnEditTapped(object sender, TappedEventArgs e)
-    {
+        base.OnAppearing();
+        var viewModel = (MainViewModel)BindingContext;
+        viewModel.GetIncidents();
 
     }
 

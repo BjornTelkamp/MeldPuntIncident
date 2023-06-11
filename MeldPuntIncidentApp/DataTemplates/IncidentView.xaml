@@ -24,8 +24,8 @@
             <Grid Padding="0" ColumnDefinitions="*">
                 <VerticalStackLayout
                                     Grid.Column="0"
-                                    >
-                    <Label Text="{Binding Description}" Margin="0,0,0,15"/>
+                                    >                 
+                    <Label Text="{Binding Description}" Margin="0,0,0,15" FontAttributes="Bold"/>
                     <HorizontalStackLayout
                                 Grid.Column="1"
                                 >
@@ -33,7 +33,7 @@
                             <Label.Text >
                                 <MultiBinding StringFormat="{}{0} | {1}">
                                     <Binding Path="Category" />
-                                    <Binding Path="Date"/>
+                                    <Binding Path="Date" StringFormat='{}{0:dd-MM-yyyy}'/>
                                 </MultiBinding>
                             </Label.Text>
                         </Label>

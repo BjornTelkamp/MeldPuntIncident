@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Description:" Grid.Row="0" Grid.Column="0" Margin="15"/>
+                <Label Text="Description" Grid.Row="0" Grid.Column="0" Margin="15"/>
                 <Entry Text="{Binding Incident.Description}" Grid.Row="0" Grid.Column="1" />
 
                 <Label Text="Category:" Grid.Row="1" Grid.Column="0" Margin="15" />
@@ -47,6 +47,6 @@
 
         </ScrollView>
 
-        <Button Text="Save" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IncidentEditViewModel}}, Path=SubmitCommand}" Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="15" CommandParameter="{Binding .}"/>
+        <Button Text="Save" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:IncidentEditViewModel}}, Path=SaveCommand}" Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="15" CommandParameter="{Binding .}"/>
     </Grid>
 </ContentPage>
