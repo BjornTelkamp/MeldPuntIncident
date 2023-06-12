@@ -41,7 +41,7 @@ public partial class IncidentViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task Submit()
+    public async Task Submit()
     {
         if (IsBusy)
         {

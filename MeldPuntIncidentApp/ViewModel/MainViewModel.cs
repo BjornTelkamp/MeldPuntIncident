@@ -33,7 +33,7 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task DeleteIncident(IncidentItemDto obj)
+    public async Task DeleteIncident(IncidentItemDto obj)
     { 
         if (IsBusy)
         {

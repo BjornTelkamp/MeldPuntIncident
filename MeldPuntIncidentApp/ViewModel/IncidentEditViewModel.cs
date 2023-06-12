@@ -20,7 +20,7 @@ public partial class IncidentEditViewModel : BaseViewModel, IQueryAttributable
 {
     private readonly IIncidentService _incidentService;
 
-    public IncidentItemDto Incident { get; private set; }
+    public IncidentItemDto Incident { get; set; }
 
     public IncidentEditViewModel(IIncidentService incidentService)
     {
@@ -49,7 +49,7 @@ public partial class IncidentEditViewModel : BaseViewModel, IQueryAttributable
     }
 
     [RelayCommand]
-    async Task Save()
+    public async Task Save()
     {
         if (IsBusy)
         {

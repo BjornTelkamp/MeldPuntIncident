@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeldPuntIncidentApp", "Meld
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{0777AED4-A703-4CC4-83A0-ACFC08403925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeldPuntIncidentApi", "MeldPuntIncidentApi\MeldPuntIncidentApi.csproj", "{D6F2A1F6-D603-4F62-813A-FAE2F728A4E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeldPuntIncidentApi", "MeldPuntIncidentApi\MeldPuntIncidentApi.csproj", "{D6F2A1F6-D603-4F62-813A-FAE2F728A4E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeldPuntIncidentTests", "MeldPuntIncidentTests\MeldPuntIncidentTests.csproj", "{649CC439-F332-47BD-9CFD-67B8F6A15F74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{D6F2A1F6-D603-4F62-813A-FAE2F728A4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F2A1F6-D603-4F62-813A-FAE2F728A4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F2A1F6-D603-4F62-813A-FAE2F728A4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649CC439-F332-47BD-9CFD-67B8F6A15F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649CC439-F332-47BD-9CFD-67B8F6A15F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649CC439-F332-47BD-9CFD-67B8F6A15F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649CC439-F332-47BD-9CFD-67B8F6A15F74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
